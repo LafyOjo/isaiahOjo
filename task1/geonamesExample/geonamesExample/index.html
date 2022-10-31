@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>List of APIs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Kizzy Sinar">
+	<link href="libs\css\style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class = "header">
+	<header>
+		<nav>
+			<span class = "white"> Isaiah Ojo </span>
+		</nav>
+	</header>
+	</div>
+
+	<!--Table with list of 3 APIs-->
+	<div id="tableAPIs">
+		<table>
+
+			<thead>
+
+				<tr>
+					<th>API Name</th>
+					<th>API description</th>
+					<th>Action</th>
+				</tr>
+
+			</thead>
+
+			<tbody>
+
+				<tr>
+					<td>1. earthquakes</td>
+					<td>
+						Returns a list of earthquakes, ordered by magnitude <br>
+						<form>
+							<label for="setNorthEQ">North:</label>
+							<input class="numberInput" id="setNorthEQ" name="setNorthEQ" type="number" value="44.1">
+
+							<label for="setSouthEQ">South:</label>
+							<input class="numberInput" id="setSouthEQ" name="setSouthEQ" type="number" value="-9.9">
+
+							<label for="setWestEQ">West:</label>
+							<input class="numberInput" id="setWestEQ" name="setWestEQ" type="number" value="22.4">
+
+							<label for="setEastEQ">East:</label>
+							<input class="numberInput" id="setEastEQ" name="setEastEQ" type="number" value="55.2">
+						</form>
+					</td>
+					<td><button id="earthquake">Submit</button></td>
+				</tr>
+
+				<tr>
+					<td>2. weather</td>
+					<td>Returns a list of weather stations with the most recent weather observation.
+						<form>
+							<label for="setNorthW">North:</label>
+							<input class="numberInput" id="setNorthW" name="setNorthW" type="number" value="44.1">
+
+							<label for="setSouthW">South:</label>
+							<input class="numberInput" id="setSouthW" name="setSouthW" type="number" value="-9.9">
+
+							<label for="setWestW">West:</label>
+							<input class="numberInput" id="setWestW" name="setWestW" type="number" value="22.4">
+
+							<label for="setEastW">East:</label>
+							<input class="numberInput" id="setEastW" name="setEastW" type="number" value="55.2">
+						</form>
+					</td>
+					<td><button id="weather">Submit</button></td>
+				</tr>
+
+				<tr>
+					<td class="apiName">3. Country Information</td>
+					<td class="apiDescription">
+						Returns Country Info such as Capital city, Population, Area in Square
+						KM.
+					
+						<form>
+						<label for="country"> Location </label>
+						<input type="text" id="country" name="country">
+						</form>
+						</td>
+				<td>
+						<button class="button" id="country">Submit</button>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+	<!--Table of results, separate from the table of APIs for formatting reasons-->
+	<div id="results">
+		<table>
+			<tr>
+				<!--Each js script execution changes two things, the title and the content to correspond to the data recieved-->
+				<td id="txtOneS"></td>
+				<td id="txtOne">
+				</td>
+			</tr>
+
+			<tr>
+				<td id="txtTwoS"></td>
+				<td id="txtTwo">
+
+				</td>
+			</tr>
+
+			<tr>
+				<td id="txtThreeS"></td>
+				<td id="txtThree">
+
+				</td>
+			</tr>
+
+			<tr>
+				<td id="txtFourS"></td>
+				<td id="txtFour">
+
+				</td>
+			</tr>
+
+			<tr>
+				<td id="txtFiveS"></td>
+				<td id="txtFive">
+
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<footer>
+		<div class="container">
+			<p>&copy; Isaiah Ojo 2022 </p>
+		</div>
+	</footer>
+	<!--Preloader-->
+	<div id="preloader"></div>
+
+	<!--JS Scripts-->
+	<!--Loading js scripts at the end of the body tag to esnure the don't disrupt the loading of the page-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="application/javascript" src="libs/js/script.js"></script>
+
+</body>
+
+</html>
