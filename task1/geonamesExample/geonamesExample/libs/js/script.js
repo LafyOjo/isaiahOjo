@@ -121,3 +121,26 @@ $('#weather').click(function() {
     }); 
 
 });
+
+// wikipedia
+
+$('#wikipedia')
+  .click(function () {
+    $.ajax({
+      url: 'libs/php/wikipediaAPI.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function (result) {
+       $('#results').html('');
+        $.each(result, function (i, item) {
+          $
+            .each(item, function (index, val) {
+              $('#txtOne').append('Title: ' + val.title + '<br/>')
+              $('#txtTwo').append('Summary: ' + val.summary + '<br/>')
+              $('#txtThree').append('Country Code: ' + val.countryCode + '<br/>')
+              $('#txtFour').append('Wikipedia URL: ' + val.wikipediaUrl + '<br/>')
+            })
+        })
+      }
+    })
+  });
