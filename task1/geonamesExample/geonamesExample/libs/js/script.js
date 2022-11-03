@@ -154,7 +154,7 @@ $('#pcButton').click(function() {
                                                         <p>Lat: ${data.lat}</p>
                                                     </div>`);
                         });
-                         $("#all").html(postCodeResult[0])
+                         $("#txtOne").html(postCodeResult[0])
                 } else {
                     $('#txtOne').html('There is no result with these details, try another');
                     $('#txtTwo').html('');
