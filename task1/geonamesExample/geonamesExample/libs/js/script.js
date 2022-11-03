@@ -127,7 +127,7 @@ $('#weather').click(function() {
 $('#wikipediaPP')
   .click(function () {
     $.ajax({
-      url: 'libs/php/wikipediaAPI.php',
+      url: 'libs/php/wikipedia.php',
       type: 'GET',
       dataType: 'json',
       success: function (result) {
