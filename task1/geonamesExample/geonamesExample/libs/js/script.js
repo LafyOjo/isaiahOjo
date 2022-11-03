@@ -122,25 +122,51 @@ $('#weather').click(function() {
 
 });
 
-// wikipedia
+// postcode
 
-$('#wikipediaPP')
-  .click(function () {
+$('#pcButton').click(function() {
+
     $.ajax({
-      url: 'libs/php/wikipedia.php',
-      type: 'GET',
-      dataType: 'json',
-      success: function (result) {
-       $('#results').html('');
-        $.each(result, function (i, item) {
-          $
-            .each(item, function (index, val) {
-              $('#txtOne').append('Title: ' + val.title + '<br/>')
-              $('#txtTwo').append('Summary: ' + val.summary + '<br/>')
-              $('#txtThree').append('Country Code: ' + val.countryCode + '<br/>')
-              $('#txtFour').append('Wikipedia URL: ' + val.wikipediaUrl + '<br/>')
-            })
-        })
-      }
-    })
-  });
+        url: 'libs/php/postcode.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            postalcode: $('#postcode').val()
+        },
+        success: function(result) {
+            console.log(result);
+
+            if(result.status.name == 'ok') {
+
+                if(result.data.length != 0) {
+
+                    $('#txtOne').html('');
+                    $('#txtTwo').html('');
+                    $('#txtThree').html('');
+                    $('#txtFour').html('');
+
+                    let postCodeResult = [];
+                        $.each(result.data, function(_, data) {
+                             postCodeResult.push(`<div class='results'>
+                                                        <p>CountryCode: ${data.countryCode}</p>
+                                                        <p>Lng: ${data.lng}"</p>
+                                                        <p>AdminName1: ${data.adminName1}</p>
+                                                        <p>Lat: ${data.lat}</p>
+                                                    </div>`);
+                        });
+                         $("#all").html(postCodeResult[0])
+                } else {
+                    $('#txtOne').html('There is no result with these details, try another');
+                    $('#txtTwo').html('');
+                    $('#txtThree').html('');
+                    $('#txtFour').html('');
+                    $('#txtFive').html('');
+                }
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var errorMessage = jqXHR.status + ': ' + jqXHR.statusText
+            alert('Error - ' + errorMessage);
+        }
+    });
+});
