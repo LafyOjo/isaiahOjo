@@ -122,51 +122,44 @@ $('#weather').click(function() {
 
 });
 
-// postcode
+//ocean
+	$('#ocean').click(function () {
 
-$('#pcButton').click(function() {
+		$.ajax({
+			url: "libs/php/ocean.php",
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				lat: $('#lattitude').val(),
+				lng: $('#longitude').val()
+			},
+			success: function(result) {
 
-    $.ajax({
-        url: 'libs/php/postcode.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            postalcode: $('#postcode').val()
-        },
-        success: function(result) {
-            console.log(result);
+				console.log(JSON.stringify(result));
 
-            if(result.status.name == 'ok') {
+				if (result.status.name == "ok") {
+					
+					//invalid or unavailable parameters may throw a Type Error due to change in structure of the result JSON. 
+					try {												
+						$('#txtOne').html('');
+						$('#txtTwo').append('<br/>Data: ' + JSON.stringify(result['data']));
+						$('#txtThree').append('<br/>Distance: ' + JSON.stringify(result['data']['ocean']['distance']));
+						$('#txtFour').append('<br/>Geoname ID: ' + JSON.stringify(result['data']['ocean']['geonameId']));
+						$('#txtFive').append('<br/>Sea or Ocean Name: ' + JSON.stringify(result['data']['ocean']['name']));
+					} catch (e) {
+						$('#txtOne').html(JSON.stringify(result['data']['status']['message']));
+					}	
 
-                if(result.data.length != 0) {
-
-                    $('#txtOne').html('');
-                    $('#txtTwo').html('');
-                    $('#txtThree').html('');
-                    $('#txtFour').html('');
-
-                    let postCodeResult = [];
-                        $.each(result.data, function(_, data) {
-                             postCodeResult.push(`<div class='results'>
-                                                        <p>CountryCode: ${data.countryCode}</p>
-                                                        <p>Lng: ${data.lng}"</p>
-                                                        <p>AdminName1: ${data.adminName1}</p>
-                                                        <p>Lat: ${data.lat}</p>
-                                                    </div>`);
-                        });
-                         $("#txtOne").html(postCodeResult[0])
-                } else {
-                    $('#txtOne').html('There is no result with these details, try another');
-                    $('#txtTwo').html('');
-                    $('#txtThree').html('');
-                    $('#txtFour').html('');
-                    $('#txtFive').html('');
-                }
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            var errorMessage = jqXHR.status + ': ' + jqXHR.statusText
-            alert('Error - ' + errorMessage);
-        }
-    });
-});
+				}
+			
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				// error handling
+				console.log("ERROR TRIGGERED");
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		}); 
+	
+	});
