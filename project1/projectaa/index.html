@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gazetteer</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!--Bootstrap Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    
+    <!--My Stylesheet-->
+    <link rel="stylesheet" href="libs\css\styles.css"/>
+
+    <script src="https://kit.fontawesome.com/f0ec9e3182.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <!--Leaflet's Script-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    
+    <!--Marker Clusters-->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+
+    <!--Awesome Markers-->
+    <link rel="stylesheet" href="vendors\css\leaflet.awesome-markers.css">
+    <script src="vendors\js\leaflet.awesome-markers.js"></script>
+
+    <!--Easy Buttons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+  </head>
+
+  <body>
+
+    <!--Navbar-->
+    <div class="mainContainer">
+      <div id="nav">
+        <label for="userSelection">View Country:</label>
+        <select id="userSelection" name="userSelection">
+        </select>
+      </div>
+    </div>
+
+    <div id="ribbonDisplay" class="modal" tabindex="-1">
+
+      <div class="modal-dialog modal-dialog-centered">
+        <div class='modal-content altered'>
+          
+          <div class="frameWorkStart">
+            <h3 class='display-6' id='yName'></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class='frameWorkMid'>
+
+            <div class='container flex' id="ribbonMain">
+              <div class='row'>
+                <div class='col fw-bold'>Capital:</div>
+                <div class='col' id='cCapital'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Wiki:</div>
+                <div class='col' id='cWiki'><a href="" id="locationWiki">Link to Wikipedia</a></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Population:</div>
+                <div class='col' id='cPop'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Language:</div>
+                <div class='col' id='cLanguage'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Region:</div>
+                <div class='col' id='cRegion'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Currency:</div>
+                <div class='col' id='cCurrency'></div>
+              </div>
+
+            </div> 
+
+          </div>
+
+          <div class="frameWoekEnd">
+            
+          </div>
+
+        </div>  
+        
+      </div>
+    </div>
+
+    <div id="frameWorkID" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class='modal-content altered'>
+          
+          <div class="frameWorkStart unique">
+            <h3 class='lead' id='cdmName'></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class='frameWorkMid'>
+            <div class='container flex' id="ribbonMain">
+
+              <div class='row'>
+                <div class='col fw-bold'>Info:</div>
+                <div class='col' id='cdmType'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Links:</div>
+                <div class='col' id='cityWiki'><a href="" id="areaData">To Wikipedia</a></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Summary:</div>
+              </div>
+
+              <div class='row'>
+                <div class='col' id='areaSummary'></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="'frameWorkEnd">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--   ---------------------------------------------------   -->
+    <div id="weatherFrameWork" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class='modal-content altered'>
+          
+          <div class="frameWorkStart unique">
+            <h3 class='lead' id='location'></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class='frameWorkMid'>
+            <table class='table table-striped'>
+              <tbody>
+                <tr class='table-primary'>
+                  <th>Current Weather:</th>
+                  <td id='currentWeather'></td>
+                </tr>
+                <tr class='table-info'>
+                  <th>Current Temperature:</th>
+                  <td id='temperature'></td>
+                </tr>
+                <tr>
+                  <th>Feels Like:</th>
+                  <td id='weatherAttribute'></td>
+                </tr>
+                <tr>
+                  <th>Lowest Temps:</th>
+                  <td id='lowTemperature'></td>
+                </tr>
+                <tr>
+                  <th>Highest Temps:</th>
+                  <td id='highTemperature'></td>
+                </tr>
+                <tr>
+                  <th>Humidity:</th>
+                  <td id='humidity'></td>
+                </tr>
+                <tr>
+                  <th>Wind Speed:</th>
+                  <td id='windSpeed'></td>
+                </tr>
+                <tr>
+                  <th>Wind Force:</th>
+                  <td id='windForce'></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class='row'>
+              <div class='col fw-bold' align="center">Sunrise</div>
+              <div class='col fw-bold' align="center">Sunset</div>
+            </div>
+            <div class='row'>
+              <div class='col' align="center" id='sunRise'>Not Available</div>
+              <div class='col' align="center" id='sunSet'>Not Available</div>
+            </div>
+            <div class='row'>
+              <div class='col' align="center"><i class="far fa-sun fa-2x"></i></div>
+              <div class='col' align="center"><i class="far fa-moon fa-2x"></i></div>
+            </div>
+          </div>
+
+          <div class="'frameWorkEnd">
+          </div>
+        </div>
+      </div>
+    </div>   
+
+    <div id="modalRibbonData" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class='modal-content altered'>
+          
+          <div class="frameWorkStart unique">
+            <h3 class='lead' id='ribbonDataName'></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class='frameWorkMid'>
+            <div class='container flex' id="ribbonMain">
+
+              <div class='row'>
+                <div class='col fw-bold'>Feature:</div>
+                <div class='col' id='ribbonDataText'>ribbondata</div>
+              </div>
+
+              <div class='row'>
+                <iframe controls id='ribbonDataContainer'>
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="'frameWorkEnd">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="covidInfo" class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class='modal-content altered'>
+          
+          <div class="frameWorkStart unique">
+            <h3 class='lead' id='covidArea'></h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class='frameWorkMid'>
+            <div class='container flex' id="ribbonMain">
+
+              <div class='row'>
+                <div class='col fw-bold'>Daily cases:</div>
+                <div class='col' id='dailyCases'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Daily Deaths:</div>
+                <div class='col' id='dailyDeaths'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Active status:</div>
+                <div class='col' id='activeStatus'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Total in Critical health:</div>
+                <div class='col' id='criticalInfo'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Total Cases:</div>
+                <div class='col' id='totalCases'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Total Deaths:</div>
+                <div class='col' id='totalDeaths'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Total Recovered:</div>
+                <div class='col' id='recoveredCases'></div>
+              </div>
+
+              <div class='row'>
+                <div class='col fw-bold'>Updated:</div>
+                <div class='col' id='lastUpdated'></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="'frameWorkEnd">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!--Map-->
+    <div id="globalMap"></div>
+
+    <!--My Scripts-->
+    <script src="libs\javascript\script.js"></script>
+  </body>
+
+</html>
