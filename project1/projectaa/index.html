@@ -3,18 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Isaiah Ojo </title>
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Gazetteer</title>
 
     <!--Bootstrap Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    
-    <!--My Stylesheet-->
-    <link rel="stylesheet" href="libs\css\styles.css"/>
-    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
     <!--Leaflet's Script-->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
@@ -32,6 +28,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
+     <!--My Stylesheet-->
+    <link rel="stylesheet" href="libs\css\styles.css"/>
+    
   </head>
 
   <body>
@@ -140,7 +139,7 @@
       </div>
     </div>
 
-    <!--   ---------------------------------------------------   -->
+    <!-- Weather API  ---------------------------------------------------   -->
     <div id="weatherFrameWork" class="modal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class='modal-content altered'>
@@ -162,7 +161,7 @@
                   <td id='temperature'></td>
                 </tr>
                 <tr>
-                  <th>Feels Like:</th>
+                  <th>Current Weather Range:</th>
                   <td id='weatherAttribute'></td>
                 </tr>
                 <tr>
@@ -238,6 +237,7 @@
       </div>
     </div>
 
+<!-- COVID API ---------------------------------------------------------->
     <div id="covidInfo" class="modal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class='modal-content altered'>
@@ -302,6 +302,9 @@
 
     <!--Map-->
     <div id="globalMap"></div>
+    
+     <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--My Scripts-->
     <script src="libs\javascript\script.js"></script>
