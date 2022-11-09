@@ -4,7 +4,7 @@
     error_reporting(E_ALL);
 
     $start=microtime( true );
-    $file=file_get_contents('C:\xampp\htdocs\projectaa\vendors\json\countryBoundaries.geo.json');
+    $file=file_get_contents('../../vendors/json/countryBoundaries.geo.json');
 
 
     $json = json_decode($file,true);
