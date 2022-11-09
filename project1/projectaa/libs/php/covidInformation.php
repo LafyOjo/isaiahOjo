@@ -4,9 +4,9 @@
 	error_reporting(E_ALL);
 
 	$executionStartTime = microtime(true);
-
+	
 	$url='https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=' . $_REQUEST['iso'];
-
+	
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
