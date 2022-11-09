@@ -296,7 +296,7 @@ function dynamicRibbons() {
 };
     
     var covidModal = function(resSelect){
-    var isoa2 = $('#userSelection option:selected').val();
+    var resSelect = $('#userSelection option:selected').val();
     $.ajax({
         url: "libs/php/covidInformation.php", //covid stats api
         type: 'POST',
