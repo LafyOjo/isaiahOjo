@@ -4,7 +4,7 @@
 
     $executionStartTime = microtime(true);
 
-    $result=file_get_contents('C:\xampp\htdocs\projectaa\vendors\json\populationData.geojson');
+    $result=file_get_contents('../../vendors/json/countryBoundaries.geo.json');
 
     $decode = json_decode($result,true);    
 
