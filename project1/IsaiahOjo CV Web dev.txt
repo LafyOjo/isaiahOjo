@@ -1,0 +1,112 @@
+Isaiah Ojo
+
+https://github.com/LafyOjo
+London
+07850196209
+isaiahojo1999@gmail.com
+
+Professional summary
+
+A Gifted Web Developer with broad and creative portfolio. Completes lucrative and labour-intensive projects. Delivers timely results while working to SCRUM. Self-motivated Web Developer with comprehensive experience managing multiple clients. Passionate and hardworking to deliver on deadlines. Strong HTML and CSS programmer.
+
+Work history
+
+September 2020 - Current
+Lyle & Scott London
+Web Developer
+
+Created custom websites by harnessing HTML, CSS and JavaScript skills.
+Optimised HTML email templates to improve click-through and conversion rates.
+Designed web pages to enhance branding and navigation.
+Applied SEO techniques to drive engagement and improve Google rankings.
+Harnessed emerging technologies to develop innovative and profitable products.
+Developed sales strategies, turning 100,00] underperforming products into best sellers within 6 moonths.
+Drove sales and conversion, liaising with marketing to ensure maximally effective roll-out of promotions across all channels.
+Delivered a personalised content strategy to drive click-through and increase propensity to buy.
+
+September 2018 - July 2020
+The Royal Society London
+Front-End Web Developer
+
+Was a developer for the Society's online needs
+Designed, developed and tested new features in the applications.
+Supported existing applications, bug fixes and support to end users
+Developed web applications using C#, MVC, Angular, JavaScript and CSS as a minimum
+Designed, built, and maintained efficient and reliable C# code
+Developed Code to the Society's established standards.
+Developed solutions on the Microsoft Pass Web Application platform
+Participated as a team member in fully agile Scrum deliveries
+Document all code and developments to the Society's established standards.
+Produced end user documentation as required for any system developed to the Society's established standards
+Presented work and discuss challenges and achievements at regular team meetings
+Researched new techniques and technologies and present these at regular team meetings
+Ensured the storage of personal data is secure and meets the requirements of the Data Protection Act.
+
+June 2017 - August 2018
+Leigh-Academies Trust London
+Junior Web Developer
+
+Boosted website performance and stability through planned maintenance and targeted troubleshooting.
+Developed and tested REST APIs.
+Facilitated code reviews and pair programming to produce clean, high-quality code.
+Automated tasks and analysed data with Python programming.
+Established testing framework with Selenium to eliminate bugs and create quality code.
+Designed web pages to enhance branding and navigation.
+Monitored technical performance of internal systems and escalated concerns.
+
+Skills
+
+Javascript
+Github
+SQL
+NodeJS
+Version control
+React.JS
+
+jQuery
+Website optimisation
+UX/UI design
+Front and back end development
+Website troubleshooting
+
+Education
+
+July 2022
+University Of Kent Kent
+Bachelor of Science Computer Science
+
+Professional development completed in Project Planning
+Coursework in Project Management
+Learned key project management skills such as SCRUM and Agile Development.
+Learned key programming languages such as Java, JavaScript, Erlang, NodeJS, OCaml, AJAX, MySQL, HTML, CSS and C to complete projects.
+Graduated from the University of Kent, Canterbury in Computer Science with Year In Industry.
+
+August 2017
+All Saints Catholic School and Technology College London
+A-Levels Business and I.T
+
+Graduated with Triple Distinction *
+Received Academic Scholarship of Excellence
+Majored in Business and I.T
+
+August 2015
+All Saints Catholic School And Technology College London
+GCSE
+
+Elected Captain of Prefect Team
+Majored in Maths, English and Science
+Awarded 9 GCSE's
+
+Certifications
+
+Certificate of Achievement signed by 'Rob Percival'
+
+[CSS Level 1], [Cambridge Certification Authority] - [19th December 2021]
+
+Certificate of Achievement signed by 'Rob Percival'
+
+[HTMLLevel 1], [Cambridge Certification Authority] - [19th December 2021]
+
+Certificate of Achievement signed by 'Rob Percival'
+
+[Javascript Level 1], [Cambridge Certification Authority] - [19th December 2021]
