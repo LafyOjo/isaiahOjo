@@ -7,7 +7,7 @@
             # download own copy of cacert.pem from internet
             # save in suitable location, edit below path.           
         */
-        $cacert='C:\xampp\htdocs\project1\libs\php\cacert-2021-07-05.pem';
+        $cacert='..\libs\php\cacert-2021-07-05.pem';
         $vbh = fopen('php://temp', 'w+');
 
         
