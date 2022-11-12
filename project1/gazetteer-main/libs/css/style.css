@@ -63,7 +63,7 @@ td img {
      display: flex; 
      flex-direction: column; 
      width: 100%; 
-     color: #fff;
+     color: black;
      pointer-events: auto; 
      background-color: var #fff;
      background-clip: padding-box; 
