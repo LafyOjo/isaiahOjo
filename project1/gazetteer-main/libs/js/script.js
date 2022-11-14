@@ -111,6 +111,7 @@ const span = document.getElementsByClassName("close");
 
 let border;
 let markers;
+ var clusterMarkers = L.markerClusterGroup();
 let countryObjects = new L.FeatureGroup();
 
 const markerIcon = L.ExtraMarkers.icon({
@@ -189,7 +190,8 @@ const getCities = () => {
                   </tr>
                 </table>
                 <p><a href="https://${data[i].wikipedia}" target="_blank">wikipedia</a></p>`
-              ).addTo(countryObjects);
+              ).addTo(clusterMarkers);
+                marker.addTo(clusterMarkers);
             }
 
           } catch (e) {
@@ -302,7 +304,7 @@ $(document).ready(function () {
       }
     })
   })
-    var clusterMarkers = L.markerClusterGroup();
+   
 
     var JSONGeo = new L.GeoJSON();
     
