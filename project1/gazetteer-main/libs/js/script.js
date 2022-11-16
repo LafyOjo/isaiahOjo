@@ -1,6 +1,6 @@
 $(window).on("load",function(){
     $(".loader-wrapper").fadeOut(8000);
-             });
+});
 
 let globalMap = L.map('globalMap');
 
@@ -856,12 +856,13 @@ L.easyButton({
             
             
        if (result.status.name == 'ok') {
-          $('#countrySelect').val(result.data.countryCode);
-          $('#countrySelect').trigger('change')[0]=locationsd;
-           $('#countrySelect') = locationsd;
+          
+           var isoCode = $('#country-select').val();
 
+           $('#country-select').val(isoCode).change();
+        globalMap.fitBounds(border.getBounds());
 
-        }
+       }
          
      }
           })
