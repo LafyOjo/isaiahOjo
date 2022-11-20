@@ -1,0 +1,638 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: #fff;
+    height: 100%;
+}
+
+body a {
+  text-decoration: none;
+}
+
+/*  Preloader */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: black;
+  }
+  
+  #preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid black;
+    border-top-color: dimgrey;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+  }
+  
+  @-webkit-keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+/*  Navigation */
+
+
+#navigation .navbar {
+    background: black;
+}
+
+
+#navigation .navbar-nav button {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-left: 5px;
+  border: none; 
+}
+
+.nav-text{
+    color: #fff;
+    padding: 10px;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-toggler-icon {
+    color: #fff;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-color: white;
+}
+
+/* Main Css */
+
+#main-body {
+    margin-top: 120px;
+}
+
+/* all locations box styling */
+
+#all-locations {
+    margin-top: 25px;
+    padding-top: 125px;
+}
+
+/* Form Styling */
+
+.search {
+    position: relative;
+}
+
+.search input {
+    border-radius: 25px;
+    text-indent: 10px;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 1px solid black;
+}
+
+.search button {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    height: 40px;
+    width: 50px;
+    border: none;
+    background: transparent;
+}
+
+.search button i{
+    color: black;
+    font-size: 1.25rem;
+}
+
+.select.form-select {
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+/* table section styling */
+
+.table-area {
+    overflow: hidden;
+}
+
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* table data information */
+
+.all_entries h5{
+    font-weight: 700;
+    color: black;
+}
+
+/* div clean-up */
+
+.hide-arrow select {
+    background-image: none;
+}
+
+/* Employee create styling */
+
+.add-employee-button {
+    background-color: transparent;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    font-size: 25px;
+}
+
+/* Stylong the table */
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table tbody {
+    background: #fff;
+}
+
+/*.table thead {
+    background: black;
+    color: #fff;
+}*/
+
+.employeeTable th {
+    padding: 15px 8px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.employeeTable tbody tr:hover {
+  background: gray;
+}
+
+/* Styling the employee modal */
+
+.employee-box {
+    width: 700px;
+    max-width: 100%;
+}
+
+#createDetails .modal-header {
+    background-color: black;
+    color: #fff;
+}
+
+#left-arrow {
+    margin: 0 !important;
+}
+
+#other-left {
+    margin-right: 60px;
+    font-size: 2.5rem;
+    padding: 0 30px;
+    color: blue;
+}
+
+#employeeConfirmAddBtn {
+  margin-left: 65px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: black;
+}
+
+#addEmployeeForm p {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+#addEmployeeForm span {
+  color: #f56957;
+}
+
+#addEmployeeForm .error {
+  color:  #f56957;
+}
+
+/* View Employee Deatils */
+
+/* js created div */
+
+.container-details {
+    width: 700px;
+    max-width: 100%;
+}
+
+#edited-left-arrow {
+  margin: 0 !important;
+  font-size: 2rem;
+  padding: 0;
+  color: #fff;
+}
+
+#viewEmployeeModal .modal-header {
+  background: black;
+  color: #fff;
+}
+
+#edited-name {
+  background: black;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+#edited-tbody i {
+  font-size: 2rem;
+  color: black;
+}
+
+#edited-pencil-edit {
+  color: #61b4f8;
+  margin-right: 65px;
+  font-size: 2rem;
+  padding: 0 30px;
+}
+
+#edited-bin-delete {
+  color: #df2c14;
+  margin-left: 65px;
+  font-size: 2rem;
+  padding: 0 30px;
+}
+
+/* Edit Employee Modal */
+
+#editDepo .modal-headaer {
+    background-color: black;
+    color: #fff;
+}
+
+#append-left-arrow {
+  margin: 0 !important;
+  font-size: 2rem;
+  padding: 0;
+  color: #fff;
+}
+
+#impose-left {
+  margin-right: 65px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: blue;
+}
+
+#updateDepo {
+  margin-left: 65px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: black;
+}
+
+#editDepo label {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+#editDepartmentForm .error {
+    color: blue;
+}
+
+/*  # Departments */
+
+.department-details-card {
+  border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+	margin: 20px;
+	max-width: 100%;
+	width: 300px;
+}
+
+.department-details-card img {
+  width: 300px;
+  max-width: 100%;
+}
+
+.department-details-card .card-body {
+  padding: 1rem 1rem 0.2rem 1rem;
+}
+
+#dept-tbody i {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.department-details-card button i {
+  font-size: 1.8rem;
+}
+
+#dept-pencil-edit {
+  color: #61b4f8;
+  margin-right: 45px;
+}
+
+#dept-bin-delete {
+  color: #df2c14;
+  margin-left: 45px;
+}
+
+
+/* department button */
+
+ .add-button-department button {
+  background: white;
+  color: black;
+  height: 40px;
+  width: 250px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.add-button-department button i {
+  font-weight: bold;
+}
+
+
+/* Delete Department Modal */
+
+ #deleteDepartmentModal .modal-dialog {
+  margin-top: 60vh;
+}
+
+#deleteDepartmentModal .modal-content {
+  padding: 15px 10px 0 10px;
+}
+
+#cancelDeleteD-left {
+  margin-right: 40px; 
+}
+
+#deleteDepartmentBtn {
+  margin-left: 40px;
+  color: blue;
+}
+
+/* Locations */
+
+ .location-details-card {
+  border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+	margin: 20px;
+	max-width: 100%;
+	width: 300px;
+}
+
+.location-details-card img {
+  width: 300px;
+  max-width: 100%;
+}
+
+.location-details-card .card-body {
+  padding: 1rem 1rem 0.2rem 1rem;
+}
+
+.location-details-card button i {
+  font-size: 1.8rem;
+}
+
+#append-bin-delete{
+    background-color: red;
+}
+
+/* Location Button */
+
+ .add-button-location button {
+  background-color: black;
+  color: #fff;
+  height: 40px;
+  width: 250px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.add-button-location button i {
+  font-weight: bold;
+}
+
+/* location modal */
+
+#createLocation .modal-header {
+  color: #fff;
+  background-color: black;
+}
+
+new-left-arrow {
+  margin: 0 !important;
+  font-size: 2rem;
+  padding: 0;
+  color: #fff;
+}
+
+#ammended-left {
+  margin-right: 65px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: blue;
+}
+
+#addLocationBtn {
+  margin-left: 65px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: black;
+}
+
+#addLocationModal label {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+#addLocationForm .error {
+  color:  #f56957;
+}
+
+/* Delete Modal */
+
+ #deleteLocationModal .modal-dialog {
+  margin-top: 60vh;
+}
+
+#deletelocationModal .modal-content {
+  padding: 15px 10px 0 10px;
+}
+
+#cancelDeleteL-left {
+  margin-right: 40px; 
+}
+
+#deleteLocationBtn {
+  margin-left: 40px;
+  color: #df2c14;
+}
+
+/* error modals */
+
+#forbiddenDepartmentModal .modal-header {
+  background: #df2c14;
+  color: #fff;
+}
+
+#forbiddenLocationModal .modal-header {
+  background: #df2c14;
+  color: #fff;
+}
+
+/* MODAL */
+.modal-title {
+  margin-right: 5px;
+}
+
+/* Back to top button */
+
+ .back-to-start {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 20px;
+  z-index: 996;
+  background: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 25px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: blue;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Mobile Responsive */
+
+ @media screen and (max-width: 770px) {
+  #main {
+    padding: 0;
+  }
+  .table th {
+    padding: 8px 6px;
+  }
+  tbody td {
+    padding: 4px !important;
+  }
+  .container.table-responsive {
+    padding: 3px !important;
+  }
+}
+
+@media screen and (max-width: 366px) {
+  .modal-body {
+    padding: 10px;
+  }
+  .modal-footer {
+    justify-content: space-between;
+  }
+  .modal-footer button {
+    margin: 0 !important;
+  }
+  .delete-btn-footer button {
+    margin: 0 2px !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .department-details-card {
+    width: 250px;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-height: 815px) {
+  .modal-body {
+    padding: 10px !important;
+  }
+
+  .modal-footer, .modal-header {
+    padding: 5px;
+  }
+
+  .form-check {
+    margin: 10px 0 2px !important;
+  }
+
+} 
+
+@media screen and (max-width: 325px) {
+  .logo img {
+    width: 70px;
+  }
+  .logo h1 {
+    font-size: 0.8rem !important;
+  }
+  .ed-table td {
+    font-size: 0.8rem;
+  }
+  .ed-table i {
+    font-size: 1.2rem !important;
+  }
+}
+    
+    /* Additional Styling i did after i made the main styling */
+    .total-employees, .all-departments {
+        padding-top: 125px;
+    }
+
+    .all-locations {
+    padding-top: 125px;
+    }
+    
+    .bigm{
+        padding-top: 125px;
+    }
