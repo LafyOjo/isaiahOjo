@@ -3,6 +3,8 @@ let editEmployeeModal = $("#editDetails");
 let addDepartmentModal = $("#createDepo");
 let editDepartmentModal = $("#editDepo");
 let addLocationModal = $("#createLocation");
+let updateLocationModal = $("#updateLocation");
+
 
 $(window).on("load", function() {
     $("#preloader").fadeOut(10000);
@@ -10,6 +12,125 @@ $(window).on("load", function() {
     showDepartments();
     showLocations();
 });
+
+// Location Seaach 
+$('#select-locations').on("click", function () {
+    let value = $('#select-locations option:selected').val();
+
+        $.ajax({
+            url: 'libs/php/SearchLocation.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: value
+            },
+            success: function(result) {
+                
+                if(result.status.name == "ok"){
+                
+                 const employees = result.data;
+                let employeeTable = $("#employeeTbody");
+                employeeTable.html("");
+                let totalEntries = $("#total-entries");
+                employees.forEach(employee => {
+                    employeeTable.append($(`<tr role="button" data-id="${employee.id}">
+                                                <td>${employee.firstName}</td>
+                                                <td>${employee.lastName}</td>
+                                                <td>${employee.department}</td>
+                                                <td>${employee.location}</td>
+                                            </tr>`
+                                          ));
+               const totalRows = $("#employeeTbody tr:visible").length;
+                totalEntries.html($(`<h5>${totalRows} employees</h5>`));
+            });
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }  
+     })
+});
+
+
+// depo search
+$('#select-departments').on("click", function () {
+    let value = $('#select-departments option:selected').val();
+
+        $.ajax({
+            url: 'libs/php/SearchDepo.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: value
+            },
+            success: function(result) {
+                
+                if(result.status.name == "ok"){
+                
+                 const employees = result.data;
+                let employeeTable = $("#employeeTbody");
+                employeeTable.html("");
+                let totalEntries = $("#total-entries");
+                employees.forEach(employee => {
+                    employeeTable.append($(`<tr role="button" data-id="${employee.id}">
+                                                <td>${employee.firstName}</td>
+                                                <td>${employee.lastName}</td>
+                                                <td>${employee.department}</td>
+                                                <td>${employee.location}</td>
+                                            </tr>`
+                                          ));
+               const totalRows = $("#employeeTbody tr:visible").length;
+                totalEntries.html($(`<h5>${totalRows} employees</h5>`));
+            });
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }  
+     })
+});
+               
+
+// depo search
+$('#search-input').change(function () {
+    let values = $('#search-input').val();
+    let operand = '%';
+    let res = values.concat(operand);
+    
+        $.ajax({
+            url: 'libs/php/SearchName.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name: values
+            },
+            success: function(result) {
+                
+                if(result.status.name == "ok"){
+                
+                 const employees = result.data;
+                let employeeTable = $("#employeeTbody");
+                employeeTable.html("");
+                let totalEntries = $("#total-entries");
+                employees.forEach(employee => {
+                    employeeTable.append($(`<tr role="button" data-id="${employee.id}">
+                                                <td>${employee.firstName}</td>
+                                                <td>${employee.lastName}</td>
+                                                <td>${employee.department}</td>
+                                                <td>${employee.location}</td>
+                                            </tr>`
+                                          ));
+               const totalRows = $("#employeeTbody tr:visible").length;
+                totalEntries.html($(`<h5>${totalRows} employees</h5>`));
+            });
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }  
+     })
+});
+
 
 // Get All Employees, Departments, Locations
 function showAllEmployees() {
@@ -24,7 +145,7 @@ function showAllEmployees() {
                 const employees = result.data;
                 let employeeTable = $("#employeeTbody");
                 employeeTable.html("");
-                let totalEntries = $("#all_entries");
+                let totalEntries = $("#total-entries");
                 employees.forEach(employee => {
                     employeeTable.append($(`<tr role="button" data-id="${employee.id}">
                                                 <td>${employee.firstName}</td>
@@ -94,7 +215,7 @@ function showDepartments() {
                 addEmployeeDepartmentSelect.prepend($(`<option selected disabled value="0">Select a Department</option>`));
                 editEmployeeDepartmentSelect.prepend($(`<option value="0"></option>`));
                 $(".updateDepartmentIcon").on("click", function() {
-                    let id = $(this).attr("data-departmentid");
+                    let id = $(this).attr("data-locationid");
                     let name = $(this).attr("data-name");
                     let locationName = $(this).attr("data-location");
                     let locationID = $(this).attr("data-locationID");
@@ -148,8 +269,13 @@ function showLocations() {
                                                         <div class="card-body">
                                                             <h5 class="card-title location-name text-center mb-3"><strong>${location.name}</strong></h5>
                                                             <div class="text-center">
+
+                                                                <button id="append-pen " class="btn editLocationIcon" type="button" data-id="${location.id}">
+                                                                    <i class='fa-solid fa-pen' title="Delete"></i>
+                                                                </button>
+                                                                    
                                                                 <button id="append-bin-delete" class="btn deleteLocationIcon" type="button" data-id="${location.id}">
-                                                                    <i class='fa-solid -fa-trash' title="Delete"></i>
+                                                                    <i class='fa-solid fa-trash' title="Delete"></i>
                                                                 </button>
                                                             </div>  
                                                         </div>    
@@ -169,6 +295,19 @@ function showLocations() {
                     $("#id_dl").val(id);
                     $("#deleteLocation").modal("show");
                 });  
+                
+                
+                $(".editLocationIcon").on("click", function() {
+                    let id = $(this).attr("data-id");
+
+                    $("#id_udu").val(id);
+                    $("#locationName_ud").val(name);
+                    $("#updateLocation").modal('show');
+                    
+                    $("#updateLocationForm").validate().resetForm();
+                    $("#updateLocationBtn").attr("disabled", true);
+                    $("#checkConfirmUpdateLocation").prop("checked", true);
+                });
             }          
                 
         },
@@ -623,7 +762,7 @@ $("#updateDepo").on("click", function(e) {
     let locationID = $("#editDepartmentLocationSelect :selected").val();
    
     $.ajax({
-        url: "libs/php/updateDepartment.php",
+        url: "libs/php/updateDepo.php",
         type: 'POST',
         dataType: 'json',
         data: {
@@ -715,7 +854,7 @@ $("#btn-locations").on("click", function() {
 });
 
 // Validation Add Location
-$("#addLocationForm").validate({
+$("#addLocationForm, updateLocationForm").validate({
     rules: {
         locationName: "required"
       },
@@ -775,7 +914,66 @@ $("#addLocationBtn").on("click", function(e) {
             console.log(jqXHR, textStatus, errorThrown);
         }
     });
+});
+
+
+
+
+
+
+
+
+// Check Form Edit Location
+$("#checkConfirmUpdateLocation").click(function() {
+    if ($("#updateLocationForm").valid() && $(this).is(":checked")) {
+        $("#updateLocationBtn").attr("disabled", false);
+    } else {
+        $("#updateLocationBtn").attr("disabled", true);
+        $("#checkConfirmUpdateLocation").prop("checked", false);
+    }
+    $("#uid_ud").keyup(function() {
+        if ($(this).val() === "") {
+            $("#updateLocationBtn").attr("disabled", true);
+            $("#checkConfirmUpdateLocation").prop("checked", false);
+        }
+    });
 })
+
+// EDIT - UPDATE Location
+$("#updateLocationBtn").on("click", function(e) {
+    e.preventDefault();
+    let id = $("#id_udu").val();
+   
+    $.ajax({
+        url: "libs/php/updateLocation.php",
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            name: toTitleCase($("#uid_ud").val()),
+            id: id
+        },
+        beforeSend: function() {
+            $("#loader").removeClass("hidden");
+        },
+        success: function(result) {
+            
+            if (result.status.name == "ok") {
+                updateLocationModal.modal("hide");
+                showLocations();
+            }
+        },
+        complete: function() {
+            $("#loader").addClass("hidden");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    });
+    
+});
+
+
+
 
 // DELETE Location
 $("#checkConfirmDeleteLocation").click(function() {
@@ -810,12 +1008,12 @@ $("#deleteLocationBtn").on("click", function(e) {
         success: function(result) {
             
             if (result.status.name == "ok") {
-                $("#deleteLocationModal").modal("hide");
+                $("#deleteLocation").modal("hide");
                 showLocations();
             }
 
             if (result.status.name == "forbidden") {
-                $("#deleteLocationModal").modal("hide");
+                $("#deleteLocation").modal("hide");
                 $("#forbiddenLocationModal").modal("show");
             }
         },
@@ -829,107 +1027,9 @@ $("#deleteLocationBtn").on("click", function(e) {
 });
 
 
-// === FUNCTIONALITIES ===
-// Search Input - Employees Page
-$("#search-input").on("keyup", function() {
-    let rows = $("#employeeTbody tr");
-    let val = $.trim($(this).val()).replace(/ +/g, " ").toLowerCase();
 
-    rows.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, " ").toLowerCase();
-        return !~text.indexOf(val);
-    }).hide();
-    let totalEntries = $("#total-entries");
-    let totalRows = $("#employeeTbody tr:visible").length;
-    if (totalRows == 1) {
-        totalEntries.html($(`<h5>${totalRows} employee</h5>`));
-    } else {
-        totalEntries.html($(`<h5>${totalRows} employees</h5>`));
-    }
-});
 
-// On focus resets filter options and show all employees
-$("#search-input").on("focus", function() {
-    showAllEmployees();
-    $("#select-locations option").each(function () {
-        if (this.defaultSelected) {
-            this.selected = true;
-            return false;
-        }
-    });
-    $("#select-departments option").each(function () {
-        if (this.defaultSelected) {
-            this.selected = true;
-            return false;
-        }
-    });
-});
 
-// Search Input - Departments & Location Page
-function inputSearchDL(searchbar, names) {
-    searchbar.on("keyup", function(e) {
-        const input = e.target.value;
-        const searchNames = document.querySelectorAll(names);
-    
-        searchNames.forEach(name => {
-            if (name.innerText.toLowerCase().includes(input.toLowerCase())) {
-                name.parentElement.parentElement.style.display = "block";
-            } else {
-                name.parentElement.parentElement.style.display = "none";
-            }
-        });
-    });
-}
-inputSearchDL($("#search-input-department"), ".department-name");
-inputSearchDL($("#search-input-location"), ".location-name");
-
-// Employees Page - Filter By
-// Departments
-$("#select-departments").on("change", function() {
-    $("#select-locations option").each(function () {
-        if (this.defaultSelected) {
-            this.selected = true;
-            return false;
-        }
-    });
-    let totalEntries = $("#total-entries");
-    let totalRows = $("#employeeTbody tr").length;
-    totalEntries.html($(`<h5>${totalRows} employees</h5>`));
-    let selection = $("#select-departments :selected").text();;
-    $("table")[selection ? "show" : "hide"]();
-
-    if (selection) { 
-        $.each($("#employeeTable tbody tr"), function(index, item) {
-            $(item)[$(item).is(":contains("+ selection  +")")? "show" : "hide"]();
-            let activeRows = $("#employeeTbody tr:visible").length;
-            totalEntries.html($(`<h5>${activeRows} employees / ${totalRows}</h5>`));
-        });    
-    }
-});
-
-// Employees Page - Filter By
-// Locations
-$("#select-locations").on("change", function() {
-    $("#select-departments option").each(function () {
-        if (this.defaultSelected) {
-            this.selected = true;
-            return false;
-        }
-    });
-    let totalEntries = $("#total-entries");
-    let totalRows = $("#employeeTbody tr").length;
-    totalEntries.html($(`<h5>${totalRows} employees</h5>`));
-    let selection = $("#select-locations :selected").text();;
-    $("table")[selection ? "show" : "hide"]();
-
-    if (selection) { 
-      $.each($("#employeeTable tbody tr"), function(index, item) {
-        $(item)[$(item).is(":contains("+ selection  +")")? "show" : "hide"]();
-        let activeRows = $("#employeeTbody tr:visible").length;
-        totalEntries.html($(`<h5>${activeRows} employees / ${totalRows}</h5>`));
-      });
-    }
-});
 
 // Capitalize first letters
 function toTitleCase(str) {
@@ -946,7 +1046,7 @@ function resetModal(modalName) {
 }
 
 // Back to top button
-let backToTop = $(".fa-arrow-up-to-line");
+let backToTop = $(".back-to-top");
 if (backToTop) {
     const toggleBacktotop = () => {
         if (window.scrollY > 100) {
