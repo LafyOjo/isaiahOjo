@@ -70,7 +70,7 @@
                 <div class="container num-and-add">
                     <div class="d-flex justify-content-between align-items-end">
 
-                        <div id="all_entries" class="all_entries p-1"> </div>
+                        <div id="total-entries" class="total-entries p-1"> </div>
                        
                         <div class="add-employee-button p-3">
                             <button id="add-employee" type="button" class="btn" title="Add New Employee"><i class='fas fa-plus' ></i></button>
@@ -397,6 +397,14 @@
                     </div>
                 </div>
             </div>
+            
+            
+        
+            
+            
+            
+            
+            
 
                 <!-- ======= Delete Department Modal ======= -->
             <div id="deleteDepartmentModal" class="modal fade" tabindex="-1" role="dialog"  data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
@@ -457,6 +465,42 @@
                                     <i class='fa-solid fa-x'></i>
                                 </button>
                                 <button type="button" class="btn" id="addLocationBtn" title="Add" disabled>
+                                    <i class='fas fa-plus'></i>
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+              <div id="updateLocation" class="modal" tabindex="-1" role="dialog" aria-labelledby="updateLocationLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" id="new-left-arrow" class="btn" title="Back" data-bs-dismiss="modal" aria-label="Close"><i class='fa-solid fa-arrow-left'></i></button>
+                            <h4 class="modal-title" id="updateLocationLabel">Update Location</h4>
+                        </div>
+                            <div class="modal-body">
+                                <div class="location-form-container container p-3">
+                                    <form id="updateLocationForm">					<input type="hidden" id="id_udu" name="id" class="form-control">	
+                                        <div class="m-3 form-group">
+                                            <label>Location Name</label>
+                                            <input type="text" id="uid_ud" name="locationName_ud" class="form-control"/>
+                                        </div>
+                                        <div class="mt-5 form-check">
+                                            <input type="checkbox" class="form-check-input" name="checkConfirmUpdateLocation" id="checkConfirmUpdateLocation"/>
+                                            <label class="form-check-label" for="checkConfirmUpdateLocation">
+                                                I confirm that the Location is correct.
+                                            </label>
+                                        </div>	
+                                    </form>	
+                                </div>			
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" id="update-impose-left" class="btn" title="Close" data-bs-dismiss="modal">
+                                    <i class='fa-solid fa-x'></i>
+                                </button>
+                                <button type="button" class="btn" id="updateLocationBtn" title="Add" disabled>
                                     <i class='fas fa-plus'></i>
                                 </button>
                             </div>
@@ -538,7 +582,7 @@
         <div id="preloader"></div>
         
         
-        <script src = "libs/vendors/JQuery/jquery/jquery-3.6.0.min.js"></script>
+        <script src="libs/vendors/JQuery/jquery/jquery-3.6.0.min.js"></script>
         <script src="libs/vendors/bootstrap-5/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
         <script src="libs/vendors/JQuery/jquery/jquery-validation/jquery.validate.min.js"></script>
         <script src="libs/vendors/JQuery/jquery/jquery-validation/additional-methods.min.js"></script>
