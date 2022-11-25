@@ -229,16 +229,39 @@ function showDepartments() {
                     $("#updateDepo").attr("disabled", true);
                     $("#checkConfirmEditDepartment").prop("checked", false);    
                 });
-                $(".deleteDepartmentIcon").on("click", function() {
-                    let id = $(this).attr("data-departmentid");
-                    $("#id_dd").val(id);
+                
+                
+                $(".deleteDepartmentIcon").on("click", function() {    
+                   let idd = $(this).attr("data-departmentid");
+                    
+                    $.ajax({
+                    url: "libs/php/deleteDepartment.php",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 
+                    id: idd
+                        },
+                    success: function(resultg) {
+                        
+                    for (let i= 0; i < result.data.length; i++ ) { 
+                        if (result.data[i].id === idd) {
+                            document.getElementById("departmentSpan").innerHTML = result.data[i].name;         } 
+                    }
+
+                if(resultg.data == 0 || resultg.data == '0'){
+                        
+                    $("#id_dd").val(idd);
                     $("#deleteDepartmentModal").modal("show");
-                });   
+                        
+                    } else {
+                         $("#deleteDepartmentModal").modal("hide");
+                         $("#forbiddenDepartmentModal").modal("show");                
+                        }
+                    }
+                    })
+                })
             }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR, textStatus, errorThrown);
-        }
+          }
     });
 }
 
@@ -291,10 +314,35 @@ function showLocations() {
                 editDepartmentLocationSelect.prepend($(`<option value="0"></option>`));
                 addDepartmentLocationSelect.prepend($(`<option selected disabled value="0">Select Location</option>`));
                 $(".deleteLocationIcon").on("click", function() {
-                    let id = $(this).attr("data-id");
-                    $("#id_dl").val(id);
+                    
+                    let idd = $(this).attr("data-id");
+                    
+                    $.ajax({
+                    url: "libs/php/deleteLocation.php",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 
+                    id: idd
+                        },
+                    success: function(resultg) {
+                        
+                    for (let i= 0; i < result.data.length; i++ ) { 
+                        if (result.data[i].id === idd) {
+                            document.getElementById("locationSpan").innerHTML = result.data[i].name;                        } 
+                    }
+
+                if(resultg.data == 0 || resultg.data == '0'){
+                        
+                    $("#id_dl").val(idd);
                     $("#deleteLocation").modal("show");
-                });  
+                        
+                    } else {
+                         $("#deleteLocation").modal("hide");
+                         $("#forbiddenLocationModal").modal("show");                
+                        }
+                    }
+                })
+            });  
                 
                 
                 $(".editLocationIcon").on("click", function() {
@@ -506,7 +554,7 @@ $("#add-employee").click(function() {
     $("#employeeConfirmAddBtn").attr("disabled", true);
 });
 
-$("#employeeConfirmAddBtn").click(function(e) {
+$("#addEmployeeForm").on("submit", function(e) {
     e.preventDefault();
     
     $.ajax({
@@ -573,7 +621,7 @@ $("#checkConfirmEditEmployee").click(function() {
 });
 
 // EDIT - UPDATE Employee 
-$("#updateEmployeeBtn").on("click", function(e) {
+$("#editEmployeeForm").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_u").val();
     let departmentID = $("#editEmployeeDepartmentSelect :selected").data("departmentid");
@@ -611,6 +659,45 @@ $("#updateEmployeeBtn").on("click", function(e) {
     
 });
 
+
+$('#ed-content').on('show.bs.modal', function (e){
+    
+    $.ajax({
+        url: "libs/php/getPersonnelByID.php",
+        dataType: 'json',
+        data: {
+            id: (e.relatedTarget).attr('data-id')
+        },
+        success: function(result){
+        
+        var resultCode = result.status.code;
+            
+        if (resultCode == 200) {
+            
+            $('#id_u').val(result.data.personnel[0].id);
+            $('#firstName_u').val(result.data.personnel[0].firstName);
+            $('#lastName_u').val(result.data.personnel[0].lastName);
+            $('#email_u').val(result.data.personnel[0].email);
+    
+        } else {
+            $('#ed-content .modal-title').replaceWith("Error retrieving data");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#ed-content .modal-title').replaceWith("Error retreiving data");
+            }
+        });
+    });
+
+$('#ed-content').on('shown.bs.modal', function () {
+    $('#firstName_u').focus();
+});
+
+$('ed-content').on('hidden.bs.modal', function (){
+    $('editEmployeeForm')[0].reset;
+});
+
+
 // DELETE Employee
 $("#checkConfirmDeleteEmployee").click(function() {
     if ($(this).is(":checked")) {
@@ -628,7 +715,7 @@ $("#deleteEmployeeModal").on("hidden.bs.modal", function() {
     $("#viewEmployeeModal").removeClass("dm-overlay");
 });
 
-$("#deleteEmployeeBtn").on("click", function(e) {
+$("#deleteEmployee").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_d").val();
 
@@ -658,7 +745,6 @@ $("#deleteEmployeeBtn").on("click", function(e) {
         }
     });
 });
-
 
 // ---====== DEPARTMENTS =====---
 
@@ -708,7 +794,7 @@ $("#add-department").click(function() {
     $("#addDepartmentBtn").attr("disabled", true);
 });
 
-$("#addDepartmentBtn").on("click", function(e) {
+$("#addDepartmentForm").on("submit", function(e) {
     e.preventDefault();
     let locationID = $("#addDepartmentLocationSelect :selected").val();
 
@@ -756,7 +842,7 @@ $("#checkConfirmEditDepartment").click(function() {
 });
 
 // EDIT - UPDATE Department
-$("#updateDepo").on("click", function(e) {
+$("#editDepartmentForm").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_ud").val();
     let locationID = $("#editDepartmentLocationSelect :selected").val();
@@ -790,6 +876,10 @@ $("#updateDepo").on("click", function(e) {
     
 });
 
+
+
+
+
 // DELETE Department
 $("#checkConfirmDeleteDepartment").click(function() {
     if ($(this).is(":checked")) {
@@ -806,7 +896,7 @@ $("#deleteDepartmentModal").on("hidden.bs.modal", function() {
     }
 });
 
-$("#deleteDepartmentBtn").on("click", function(e) {
+$("#deleteDepartmentForm").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_dd").val();
 
@@ -839,8 +929,6 @@ $("#deleteDepartmentBtn").on("click", function(e) {
         }
     });
 });
-
-
 // ---====== LOCATIONS =====---
 
 $("#btn-locations").on("click", function() {
@@ -887,7 +975,7 @@ $("#add-location").click(function() {
     $("#addLocationBtn").attr("disabled", true);
 });
 
-$("#addLocationBtn").on("click", function(e) {
+$("#addLocationForm").on("submit", function(e) {
     e.preventDefault();
     
     $.ajax({
@@ -916,13 +1004,6 @@ $("#addLocationBtn").on("click", function(e) {
     });
 });
 
-
-
-
-
-
-
-
 // Check Form Edit Location
 $("#checkConfirmUpdateLocation").click(function() {
     if ($("#updateLocationForm").valid() && $(this).is(":checked")) {
@@ -940,7 +1021,7 @@ $("#checkConfirmUpdateLocation").click(function() {
 })
 
 // EDIT - UPDATE Location
-$("#updateLocationBtn").on("click", function(e) {
+$("#updateLocationForm").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_udu").val();
    
@@ -972,9 +1053,6 @@ $("#updateLocationBtn").on("click", function(e) {
     
 });
 
-
-
-
 // DELETE Location
 $("#checkConfirmDeleteLocation").click(function() {
     if ($(this).is(":checked")) {
@@ -991,7 +1069,7 @@ $("#deleteLocation").on("hidden.bs.modal", function() {
     }
 });
 
-$("#deleteLocationBtn").on("click", function(e) {
+$("#deleteLocationForm").on("submit", function(e) {
     e.preventDefault();
     let id = $("#id_dl").val();
 
@@ -1006,6 +1084,11 @@ $("#deleteLocationBtn").on("click", function(e) {
             $("#loader").removeClass("hidden");
         },
         success: function(result) {
+            $('#append-bin-delete').on("click", function(){
+                if(result.data > 0){
+                 $("#forbiddenLocationModal").modal("show");
+            }
+            });
             
             if (result.status.name == "ok") {
                 $("#deleteLocation").modal("hide");
@@ -1025,11 +1108,6 @@ $("#deleteLocationBtn").on("click", function(e) {
         }
     });
 });
-
-
-
-
-
 
 // Capitalize first letters
 function toTitleCase(str) {
