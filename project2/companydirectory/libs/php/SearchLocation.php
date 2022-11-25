@@ -24,9 +24,13 @@
 
 	}	
 
-	$query = 'SELECT p.id, p.lastName, p.firstName, p.jobTitle, p.email, d.name as department, l.name as location FROM personnel p LEFT JOIN department d ON (d.id = p.departmentID) LEFT JOIN location l ON (l.id = d.locationID) WHERE l.id ='. $_REQUEST['name'];
+	$query = $conn->prepare('SELECT p.id, p.lastName, p.firstName, p.jobTitle, p.email, d.name as department, l.name as location FROM personnel p LEFT JOIN department d ON (d.id = p.departmentID) LEFT JOIN location l ON (l.id = d.locationID) WHERE l.id = ?');
+    
+    $query->bind_param("i", $_REQUEST['name']);
 
-	$result = $conn->query($query);
+	$query->execute();
+
+    $result = $query->get_result();
 	
 	if (!$result) {
 
