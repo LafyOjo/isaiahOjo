@@ -312,11 +312,12 @@ body a {
   color: blue;
 }
 
-#updateDepo {
-  margin-left: 65px;
+#updateDepo, #xappend-left {
+  margin: 20px;
   font-size: 2.5rem;
   padding: 0 30px;
   color: black;
+  
 }
 
 #editDepo label {
@@ -464,13 +465,19 @@ new-left-arrow {
   color: #fff;
 }
 
-#ammended-left {
-  margin-right: 65px;
+#ammended-left{
+  margin: 20px;
   font-size: 2.5rem;
   padding: 0 30px;
   color: blue;
 }
 
+#addDepartmentBtn{
+  margin: 20px;
+  font-size: 2.5rem;
+  padding: 0 30px;
+  color: red;
+}
 #addLocationBtn {
   margin-left: 65px;
   font-size: 2.5rem;
