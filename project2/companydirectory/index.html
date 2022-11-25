@@ -17,6 +17,7 @@
     </head>
     
     <body>
+        <div id="preloader"></div>
         <header id="navigation">  
             <nav class="navbar fixed-top navbar-expand-lg navbar-light">
                 <div class="nav-containers container-fluid">
@@ -195,11 +196,8 @@
                                             I confirm that all data are correct.
                                         </label>
                                     </div>
-                                </form>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-center">
+                                    
+                                    <div class="modal-footer justify-content-center">
                             <button type="button" id="other-left" class="btn" title="Close" data-bs-dismiss="modal">
                                 <i class='fa-solid fa-x'></i>
                             </button>
@@ -207,6 +205,10 @@
                                 <i class='fas fa-plus'></i>
                             </button>
                           </div>
+                                    
+                              </form>
+                            </div>
+                        </div>
                     </div>
                  </div>
                </div>
@@ -268,20 +270,20 @@
                                                 I confirm that all data are correct.
                                             </label>
                                         </div>	
-                                    </form>	
-                                </div>			
-                            </div>
                             <div class="modal-footer justify-content-center">
                                 <button type="button" id="xedite-left" class="btn" title="Close" data-bs-dismiss="modal">
                                     <i class='fa-solid fa-x'></i>
                                 </button>
-                                <button type="button" class="btn" id="updateEmployeeBtn" title="Update" disabled>
+                                <button type="button submit" class="btn" id="updateEmployeeBtn" title="Update" disabled>
                                     <i class='fa-solid fa-check'></i>
                                 </button>
                             </div>
-                    </div>
+                        </form>	
+                    </div>			
                 </div>
             </div>
+        </div>
+    </div>
 
                 <!-- ======= Delete Employee Modal ======= -->
             <div id="deleteEmployeeModal" class="modal fade" tabindex="-1" role="dialog"  data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
@@ -290,25 +292,26 @@
                         <div class="modal-body">
                             <h4><strong>Delete employee?</strong></h4>
                             <p class="mt-3"><small>This employee will be deleted from this company. Delete?</small></p>
-                            <form>
+                            <form id = "deleteEmployee">
                                 <input type="hidden" id="id_d" name="id" class="form-control">
                                 <div class="mt-3 form-check">
                                     <input type="checkbox" class="form-check-input" name="checkConfirmDeleteEmployee" id="checkConfirmDeleteEmployee"/>
                                     <label class="form-check-label" for="checkConfirmDeleteEmployee">
                                         <small>I've read and understand</small>
                                     </label>
-                                </div>						
-                            </form>
-                        </div>
-                        <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
+                                </div>	
+                                <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
                             <button type="button" id="cancelDeleteE-left" class="btn mb-1" title="Cancel" data-bs-dismiss="modal">
                                 <h5 class="text-primary"><strong>CANCEL</strong></h5>
                             </button>
                 
-                            <button type="button" class="btn mb-1" id="deleteEmployeeBtn" title="Delete" disabled>
+                            <button type="button submit" class="btn mb-1" id="deleteEmployeeBtn" title="Delete" disabled>
                                 <h5><strong>DELETE</strong></h5>
                             </button>
                         </div>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -340,20 +343,20 @@
                                                 I confirm that all data are correct.
                                             </label>
                                         </div>	
-                                    </form>	
-                                </div>			
-                            </div>
-                            <div class="modal-footer justify-content-center">
+                                        <div class="modal-footer justify-content-center">
                                 <button type="button" id="ammended-left" class="btn" title="Close" data-bs-dismiss="modal">
                                     <i class='fa-solid fa-x'></i>
                                 </button>
-                                <button type="button" class="btn" id="addDepartmentBtn" title="Add" disabled>
+                                <button type="button submit" class="btn" id="addDepartmentBtn" title="Add" disabled>
                                     <i class='fas fa-plus'></i>
                                 </button>
                             </div>
+                          </form>	
+                        </div>			
                     </div>
                 </div>
             </div>
+        </div>
 
                 <!-- ======= Edit Department Modal ======= -->
             <div id="editDepo" class="modal" tabindex="-1" role="dialog" aria-labelledby="editDepoLabel" aria-hidden="true">
@@ -382,17 +385,17 @@
                                             <label class="form-check-label" for="checkConfirmEditDepartment">
                                                 I confirm that all data are correct.
                                             </label>
-                                        </div>	
-                                    </form>	
-                                </div>			
-                            </div>
-                            <div class="modal-footer justify-content-center">
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
                                 <button type="button" id="xappend-left" class="btn" title="Close" data-bs-dismiss="modal">
                                     <i class='fa-solid fa-x'></i>
                                 </button>
-                                <button type="button" class="btn" id="updateDepo" title="Update" disabled>
+                                <button type="button submit" class="btn" id="updateDepo" title="Update" disabled>
                                     <i class='fa-solid fa-check'></i>
                                 </button>
+                            </div>
+                                    </form>	
+                                </div>			
                             </div>
                     </div>
                 </div>
@@ -412,25 +415,25 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <h4><strong>Delete Department?</strong></h4>
-                            <p class="mt-3"><small>This Department will be deleted from this company. Delete?</small></p>
-                            <form>
+                            <p class="mt-3"><small>This Department <span id = "departmentSpan"> </span> will be deleted from this company. Delete?</small></p>
+                            <form id = "deleteDepartmentForm">
                                 <input type="hidden" id="id_dd" name="id" class="form-control">
                                 <div class="mt-3 form-check">
                                     <input type="checkbox" class="form-check-input" name="checkConfirmDeleteDepartment" id="checkConfirmDeleteDepartment"/>
                                     <label class="form-check-label" for="checkConfirmDeleteDepartment">
                                         <small>I've read and understand</small>
                                     </label>
-                                </div>						
-                            </form>
-                        </div>
-                        <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
+                                </div>	
+                                <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
                             <button type="button" id="cancelDeleteD-left" class="btn mb-1" title="Cancel" data-bs-dismiss="modal">
                                 <h5 class="text-primary"><strong>CANCEL</strong></h5>
                             </button>
                 
-                            <button type="button" class="btn mb-1" id="deleteDepartmentBtn" title="Delete" disabled>
+                            <button type="button submit" class="btn mb-1" id="deleteDepartmentBtn" title="Delete" disabled>
                                 <h5><strong>DELETE</strong></h5>
                             </button>
+                        </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -457,16 +460,16 @@
                                                 I confirm that the Location is correct.
                                             </label>
                                         </div>	
-                                    </form>	
-                                </div>			
-                            </div>
-                            <div class="modal-footer justify-content-center">
+                                        <div class="modal-footer justify-content-center">
                                 <button type="button" id="impose-left" class="btn" title="Close" data-bs-dismiss="modal">
                                     <i class='fa-solid fa-x'></i>
                                 </button>
-                                <button type="button" class="btn" id="addLocationBtn" title="Add" disabled>
+                                <button type="button submit" class="btn" id="addLocationBtn" title="Add" disabled>
                                     <i class='fas fa-plus'></i>
                                 </button>
+                            </div>
+                                    </form>	
+                                </div>			
                             </div>
                     </div>
                 </div>
@@ -493,16 +496,16 @@
                                                 I confirm that the Location is correct.
                                             </label>
                                         </div>	
-                                    </form>	
-                                </div>			
-                            </div>
-                            <div class="modal-footer justify-content-center">
+                                        <div class="modal-footer justify-content-center">
                                 <button type="button" id="update-impose-left" class="btn" title="Close" data-bs-dismiss="modal">
                                     <i class='fa-solid fa-x'></i>
                                 </button>
-                                <button type="button" class="btn" id="updateLocationBtn" title="Add" disabled>
+                                <button type="button" submit class="btn" id="updateLocationBtn" title="Add" disabled>
                                     <i class='fas fa-plus'></i>
                                 </button>
+                            </div>
+                                    </form>	
+                                </div>			
                             </div>
                     </div>
                 </div>
@@ -514,25 +517,25 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <h4><strong>Delete Location?</strong></h4>
-                            <p class="mt-3"><small>This Location will be deleted from this company. Delete?</small></p>
-                            <form>
+                            <p class="mt-3"><small>This location <span id = "locationSpan"> </span>will be deleted from this company. Delete?</small></p>
+                            <form id = "deleteLocationForm">
                                 <input type="hidden" id="id_dl" name="id" class="form-control">
                                 <div class="mt-3 form-check">
                                     <input type="checkbox" class="form-check-input" name="checkConfirmDeleteLocation" id="checkConfirmDeleteLocation"/>
                                     <label class="form-check-label" for="checkConfirmDeleteLocation">
                                         <small>I've read and understand</small>
                                     </label>
-                                </div>						
-                            </form>
-                        </div>
-                        <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
+                                </div>		
+                                <div class="delete-btn-footer mt-2 align-items-center justify-content-between text-center">
                             <button type="button" id="cancelDeleteL-left" class="btn mb-1" title="Cancel" data-bs-dismiss="modal">
                                 <h5 class="text-primary"><strong>CANCEL</strong></h5>
                             </button>
                 
-                            <button type="button" class="btn mb-1" id="deleteLocationBtn" title="Delete" disabled>
+                            <button type="button submit" class="btn mb-1" id="deleteLocationBtn" title="Delete" disabled>
                                 <h5><strong>DELETE</strong></h5>
                             </button>
+                        </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -579,7 +582,6 @@
         </main>
         
         <a href="#" class="back-to-start d-flex align-items-center justify-content-center"><i class='fa-solid fa-arrow-up-to-line'></i></a>
-        <div id="preloader"></div>
         
         
         <script src="libs/vendors/JQuery/jquery/jquery-3.6.0.min.js"></script>
