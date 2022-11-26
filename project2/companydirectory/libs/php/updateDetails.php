@@ -24,11 +24,13 @@
 
 	}	
 
-	$query = 'UPDATE personnel SET firstName = ' . '"' . $_POST['firstName'] . '"' . ', lastName =' . '"' . $_POST['lastName'] . '"' . ', email =' . '"' . $_POST['email'] . '"' . ', jobTitle =' . '"' . $_POST['jobTitle'] . '"' . ', departmentID =' . $_POST['departmentID'] . ' WHERE id =' . $_POST['id'];
-
-	$result = $conn->query($query);
+	$query = $conn->prepare('UPDATE personnel SET firstName = ?, lastName = ?, email = ?, jobTitle = ?, departmentID = ? WHERE id =?');
+        
+    $query->bind_param("ssssii", $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['jobTitle'], $_POST['departmentID'], $_POST['id']);
+    
+	$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
@@ -41,7 +43,7 @@
 
 		exit;
 
-	}
+	};
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
