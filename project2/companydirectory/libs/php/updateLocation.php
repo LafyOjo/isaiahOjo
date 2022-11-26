@@ -24,11 +24,14 @@
 
 	}	
 
-	$query = 'UPDATE location SET name = ' . '"' . $_POST['name'] . '"' . ' WHERE id =' . $_POST['id'];
+	$query = $conn->prepare('UPDATE location SET name = ? WHERE id =?');
 
-	$result = $conn->query($query);
+    $query->bind_param("si", $_POST['name'], $_POST['id']);
+
+    
+	$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
@@ -41,7 +44,7 @@
 
 		exit;
 
-	}
+	};
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
