@@ -25,11 +25,13 @@
 	}	
 
 
-	$query = 'INSERT INTO department (name, locationID) VALUES("' . $_POST['name'] . '",' . $_POST["locationID"] . ')';
+	$query = $conn->prepare('INSERT INTO department (name, locationID) VALUES(?,?)');
 
-	$result = $conn->query($query);
+	$query->bind_param("si", $_POST['name'], $_POST['locationID']);
+
+	$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
