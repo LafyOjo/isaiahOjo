@@ -25,11 +25,13 @@
 	}	
 
 
-    $query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_POST['firstName'] . '","' . $_POST["lastName"] . '","' . $_POST["jobTitle"] . '","' . $_POST["email"] . '",' . $_POST["departmentID"] .')';
+    $query = $conn->prepare('INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES(?,?,?,?,?)');
 
-	$result = $conn->query($query);
+    $query->bind_param("ssssi", $_POST['firstName'], $_POST['lastName'], $_POST['jobTitle']  , $_POST['email'], $_POST['departmentID']);
+
+	$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
@@ -42,7 +44,7 @@
 
 		exit;
 
-	}
+	};
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
