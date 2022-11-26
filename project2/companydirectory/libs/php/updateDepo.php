@@ -24,11 +24,13 @@
 
 	}	
 
-	$query = 'UPDATE department SET name = ' . '"' . $_POST['name'] . '"' . ', locationID =' . $_POST['locationID'] . ' WHERE id =' . $_POST['id'];
+	$query = $conn->prepare('UPDATE department SET name = ?, locationID = ?  WHERE id = ?');
 
-	$result = $conn->query($query);
+    $query->bind_param("sii", $_POST['name'], $_POST['locationID'], $_POST['id']);
+
+	$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
@@ -41,7 +43,7 @@
 
 		exit;
 
-	}
+	};
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
