@@ -25,24 +25,14 @@
 	}	
 
 
-	$query = 'DELETE FROM personnel WHERE id = ' . $_POST['id'];
+	$query = $conn->prepare('DELETE FROM personnel WHERE id = ?');
 
-	$result = $conn->query($query);
+    $query->bind_param("s", $_POST['id']);
+
+    $query->execute();
+    
 	
-	if (!$result) {
-
-		$output['status']['code'] = "400";
-		$output['status']['name'] = "executed";
-		$output['status']['description'] = "query failed";	
-		$output['data'] = [];
-
-		mysqli_close($conn);
-
-		echo json_encode($output); 
-
-		exit;
-
-	}
+	$query->store_result();
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
