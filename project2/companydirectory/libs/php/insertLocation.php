@@ -25,11 +25,13 @@
 	}	
 
 
-	$query = 'INSERT INTO location (name) VALUES("' . $_POST['name'] . '")';
+	$query = $conn->prepare('INSERT INTO location (name) VALUES (?)');
 
-	$result = $conn->query($query);
+	$query->bind_param("s", $_POST['name']);
+
+$query->execute();
 	
-	if (!$result) {
+	if (false === $query) {
 
 		$output['status']['code'] = "400";
 		$output['status']['name'] = "executed";
